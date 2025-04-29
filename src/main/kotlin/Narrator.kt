@@ -47,7 +47,7 @@ fun changeNarratorMood() {
         else -> {
             mood = "professional"
             modifier = {message ->
-                "$message"
+                message
             }
         }
     }
