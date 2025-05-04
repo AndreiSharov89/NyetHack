@@ -1,6 +1,5 @@
 package org.example
 
-import java.awt.MenuItem
 import java.io.File
 import kotlin.random.Random
 
@@ -39,7 +38,11 @@ fun visitTavern() {
         narrate("$heroName sees several patrons in the tavern:")
         narrate(patrons.joinToString())*/
 
-    val itemOfTheDay = patrons.flatMap { getFavoriteMenuItem(it) }.random()
+    val itemOfTheDay = patrons.flatMap { getFavoriteMenuItem(it) }
+        .fold(mutableMapOf<String, Int>()) {
+            acc, item -> acc[item] = acc.getOrDefault(item, 0) + 1
+            acc
+        }.entries.maxByOrNull{it.value}?.key
     narrate("The item of the day is the $itemOfTheDay")
 
     repeat(3) {
