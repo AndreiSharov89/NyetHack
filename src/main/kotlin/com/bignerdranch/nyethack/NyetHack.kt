@@ -1,11 +1,13 @@
-package org.example
+package com.bignerdranch.nyethack
 
-var heroName: String = ""
+val player = Player()
 
 fun main() {
-    heroName = promptHeroName()
-    narrate("$heroName, ${createTitle(heroName)} heads to the town square.")
+    narrate("${player.name} is ${player.title}")
+    player.changeName("Aurelia")
+    narrate("${player.name}, ${player.title}, heads to the town square.")
     visitTavern()
+    player.castFireball()
 }
 
 private fun makeYellow(message: String) = "\u001b[33;1m$message\u001b[0m"
